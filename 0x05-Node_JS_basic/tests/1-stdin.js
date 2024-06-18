@@ -1,7 +1,7 @@
 const readline = require('readline');
 
 // Function to handle user input and output the result
-function handleInput(name) {
+function handleInput (name) {
   console.log(`Your name is: ${name}`);
   if (!process.stdin.isTTY) {
     console.log('This important software is now closing');
@@ -11,7 +11,7 @@ function handleInput(name) {
 // Create an interface for reading input from the user
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 });
 
 // Display the welcome message
