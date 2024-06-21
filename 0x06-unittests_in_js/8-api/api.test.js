@@ -1,19 +1,39 @@
-// Tests api.js
-const request = require('supertest');
+// api.test.js
+const request = require('request');
 const { expect } = require('chai');
-const app = require('./api');
 
-describe('Index page', () => {
-  it('should return status code 200', (done) => {
-    request(app).get('/').expect(200, done);
+describe('Integration Testing', () => {
+  it('GET / should return status code 200', (done) => {
+    request(
+      {
+        uri: 'http://localhost:7865/',
+        method: 'GET',
+      },
+      (error, response, body) => {
+        if (error) {
+          done(error);
+          return;
+        }
+        expect(response.statusCode).to.equal(200);
+        done();
+      }
+    );
   });
 
-  it('should return the correct message', (done) => {
-    request(app)
-      .get('/')
-      .end((err, res) => {
-        expect(res.text).to.equal('Welcome to the payment system');
+  it('GET / should return the correct message', (done) => {
+    request(
+      {
+        uri: 'http://localhost:7865/',
+        method: 'GET',
+      },
+      (error, response, body) => {
+        if (error) {
+          done(error);
+          return;
+        }
+        expect(body).to.equal('Welcome to the payment system');
         done();
-      });
+      }
+    );
   });
 });
